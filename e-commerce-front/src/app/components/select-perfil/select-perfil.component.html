@@ -1,0 +1,18 @@
+<div>
+    <div class="flex" *ngIf="!estaLoggeado()">
+        <h4 class="mx-2 cursor-pointer" [routerLink]="['/inicio-sesion']">Acceder</h4>
+        <h4 class="mx-2 cursor-pointer" [routerLink]="['/registro']">Registrarse</h4>
+    </div>
+    <h4 class="mx-2 px-2 cursor-pointer" *ngIf="estaLoggeado()" (click)="handleSelect()">
+        {{nombre}} <span class="mx-2"><i class="fa-solid fa-circle-chevron-down"></i></span>
+        <div class="relative w-[100%]" [ngClass]="claseSelect">
+            <div class="absolute w-[100%] bg-gray-800 py-2 rounded-2xl overflow-hidden">
+                <ul>
+                    <li class="px-3 py-1 hover:bg-gray-600 cursor-pointer" routerLink="/ordenes">Mis compras</li>
+                    <li class="px-3 py-1 hover:bg-gray-600 cursor-pointer" routerLink="/usuario">Ver perfil</li>
+                    <li class="px-3 py-1 hover:bg-gray-600 cursor-pointer" (click)="cerrarSesion()">Cerrar sesión</li>
+                </ul>
+            </div>
+        </div>
+    </h4>
+</div>

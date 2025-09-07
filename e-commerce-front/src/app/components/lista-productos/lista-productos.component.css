@@ -1,0 +1,7 @@
+.seleccionado{
+    color: oklch(0.302 0.056 229.695);
+}
+
+.oculto{
+    display: none;
+}

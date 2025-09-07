@@ -1,0 +1,27 @@
+<nav class="menu text-white fixed md:relative border-t border-t-gray-200 top-0 h-[100%] z-10">
+  <div class="relative z-20">
+    <div class="absolute cursor-pointer p-3 bg-gray-800" (click)="ocultarMenu()">
+      <div class="bg-white w-8 h-1 mb-1 rounded-3xl"></div>
+      <div class="bg-white w-8 h-1 mb-1 rounded-3xl"></div>
+      <div class="bg-white w-8 h-1 mb-1 rounded-3xl"></div>
+    </div>
+  </div>
+
+
+  <div class="contenido py-[14vh] pl-12 h-[100%]"  [ngClass]="claseContenido">
+
+    <div>
+      <h4 class="mb-[4vh] hover:text-amber-500 cursor-pointer" (click)="buscarPorCategoria(0)"><i class="fa-solid fa-house"></i> Inicio</h4>
+    </div>
+
+    <h4 class="text-2xl mb-10">Categorías</h4>
+    <ul>
+      <li id="0" class="my-3 hover:text-amber-500 cursor-pointer" (click)="buscarPorCategoria(0)">Todas</li>
+      <li class="my-3 hover:text-amber-500 cursor-pointer mr-3" *ngFor="let categoria of categorias" 
+      [id]="categoria.id" (click)="buscarPorCategoria(categoria.id)">
+        {{categoria.nombre}}
+      </li>
+    </ul>
+  </div>
+
+</nav>

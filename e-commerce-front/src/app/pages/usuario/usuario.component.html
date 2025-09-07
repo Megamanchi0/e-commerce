@@ -1,0 +1,60 @@
+<div class="py-[15vh] sm:w-[50%] mx-10 sm:mx-auto">
+    <h2 class="text-center text-3xl font-bold mb-10">Datos de usuario</h2>
+
+    <div class="my-12 text-center" *ngIf="cargando">
+        <app-cargando></app-cargando>
+    </div>
+
+    <form class="w-[100]" [formGroup]="form" *ngIf="!cargando">
+        <div class="sm:grid sm:grid-cols-2 gap-x-3">
+            <div class="my-1">
+                <label for="txtDocumento" class="font-semibold">Documento</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="documento"
+                type="text" id="txtDocumento" [class.border-red-600]="form.get('documento')?.invalid
+                && form.get('documento')?.touched">
+            </div>
+            <div class="my-1">
+                <label for="txtNombre" class="font-semibold">Nombre</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="nombre"
+                type="text" id="txtNombre" [class.border-red-600]="form.get('nombre')?.invalid
+                && form.get('nombre')?.touched">
+
+            </div>
+
+            <div class="my-1">
+                <label for="txtApellido" class="font-semibold">Apellido</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="apellido"
+                type="text" id="txtApellido" [class.border-red-600]="form.get('apellido')?.invalid
+                && form.get('apellido')?.touched">
+            </div>
+
+            <div class="my-1">
+                <label for="txtTelefono" class="font-semibold">Teléfono</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="telefono"
+                type="text" id="txtTelefono" [class.border-red-600]="form.get('telefono')?.invalid
+                && form.get('telefono')?.touched">
+            </div>
+            
+            <div class="my-1">
+                <label for="txtDireccion" class="font-semibold">Dirección</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="direccion"
+                type="text" id="txtDireccion" [class.border-red-600]="form.get('direccion')?.invalid
+                && form.get('direccion')?.touched">
+            </div>
+
+            <div class="my-1">
+                <label for="txtCorreo" class="font-semibold">Correo</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="correo"
+                type="email" id="txtCorreo" [class.border-red-600]="form.get('correo')?.invalid
+                && form.get('correo')?.touched">
+            </div>
+
+        </div>
+    </form>
+</div>

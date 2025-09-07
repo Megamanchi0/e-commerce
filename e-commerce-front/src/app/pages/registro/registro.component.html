@@ -1,0 +1,93 @@
+<div class="py-[15vh] sm:w-[50%] mx-10 sm:mx-auto">
+    <h2 class="text-center text-3xl font-bold mb-10">Registro</h2>
+    <form class="w-[100]" [formGroup]="form" (submit)="registrarse()">
+        <div class="sm:grid sm:grid-cols-2 gap-x-3">
+            <div class="my-1">
+                <label for="txtDocumento" class="font-semibold">Documento</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="documento" placeholder="Documento"
+                type="text" id="txtDocumento" [class.border-red-600]="form.get('documento')?.invalid
+                && form.get('documento')?.touched">
+            </div>
+            <div class="my-1">
+                <label for="txtNombre" class="font-semibold">Nombre</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="nombre" placeholder="Nombre"
+                type="text" id="txtNombre" [class.border-red-600]="form.get('nombre')?.invalid
+                && form.get('nombre')?.touched">
+
+            </div>
+
+            <div class="my-1">
+                <label for="txtApellido" class="font-semibold">Apellido</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="apellido" placeholder="Apellido"
+                type="text" id="txtApellido" [class.border-red-600]="form.get('apellido')?.invalid
+                && form.get('apellido')?.touched">
+            </div>
+
+            <div class="my-1">
+                <label for="txtTelefono" class="font-semibold">Teléfono</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="telefono" placeholder="Teléfono"
+                type="text" id="txtTelefono" [class.border-red-600]="form.get('telefono')?.invalid
+                && form.get('telefono')?.touched">
+            </div>
+            
+            <div class="my-1">
+                <label for="txtDireccion" class="font-semibold">Dirección</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="direccion" placeholder="Dirección"
+                type="text" id="txtDireccion" [class.border-red-600]="form.get('direccion')?.invalid
+                && form.get('direccion')?.touched">
+            </div>
+
+            <div class="my-1">
+                <label for="txtCorreo" class="font-semibold">Correo</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="correo" placeholder="Correo"
+                type="email" id="txtCorreo" [class.border-red-600]="form.get('correo')?.invalid
+                && form.get('correo')?.touched">
+            </div>
+
+            <div class="my-1">
+                <label for="txtContrasena" class="font-semibold">Contraseña</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="contrasena" placeholder="Contraseña"
+                type="password" id="txtContrasena" [class.border-red-600]="form.get('contrasena')?.invalid
+                && form.get('contrasena')?.touched">
+            </div>
+
+            <div class="my-1">
+                <label for="txtContrasena" class="font-semibold">Confirmar contraseña</label>
+                <input class="bg-white border border-gray-800 px-5 py-1 w-[100%] rounded-4xl" 
+                formControlName="confirmarContrasena" placeholder="Contraseña"
+                type="password" id="txtConfirmarContrasena" [class.border-red-600]="form.get('confirmarContrasena')?.touched
+                 && !validarContrasenas()">
+            </div>
+
+        </div>
+
+        <div class="text-center my-4 items-end">
+            <div [ngClass]="claseMensaje" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">¡Error!</span> {{mensaje}}
+            </div>
+            <button [class.opacity-50]="form.invalid" [class.cursor-pointer]="form.valid" 
+            [class.hover:bg-gray-600]="form.valid"
+            type="submit" class="bg-gray-800 px-10 py-2 text-white
+             rounded-3xl btn-agregar"
+             >
+                <span *ngIf="!cargando">Enviar datos</span>
+                <div class="text-center px-8" *ngIf="cargando">
+                    <div role="status">
+                        <svg aria-hidden="true" class="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-gray-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                        </svg>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </form>
+</div>

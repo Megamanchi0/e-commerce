@@ -1,0 +1,66 @@
+<div class="py-[15vh]">
+    
+    <h2 class="text-center text-3xl font-bold mb-10">Carrito de compras</h2>
+    <div class="sm:flex sm:flex-auto" *ngIf="elementosCarrito.length>0">
+        <div class="sm:w-[60%]">
+            <h3 class="text-center text-2xl mb-10">Productos seleccionados</h3>
+            <div class="sm:flex sm:flex-auto m-10 rounded-2xl overflow-x-hidden bg-white" *ngFor="let producto of elementosCarrito; index as i">
+                <div class="sm:w-[25%]">
+                    <img class="w-[100%]" [src]="producto.urlImagen" [alt]="producto.nombre">
+                </div>
+                <div class="m-5 relative sm:w-[75%]">
+                    <div class="sm:absolute right-0">
+                        <span class="bg-red-500 px-3 text-white text-sm rounded-2xl cursor-pointer"
+                        (click)="eliminarProductoCarrito(producto, i)">Deseleccionar <i class="fa-solid fa-square-xmark"></i></span>
+                    </div>
+                    <h4 class="font-bold my-2">{{producto.nombre}}</h4>
+                    <p class="my-2">$ {{producto.precio}}</p>
+                    <p class="my-2">{{producto.descripcion}}</p>
+                    <p class="my-2">Cantidad: {{producto.cantidad}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm:w-0.5 bg-gray-500"></div>
+
+        <div class="sm:w-[35%]">
+            <h3 class="text-center text-2xl">Valor a pagar</h3>
+            <table class="w-[80%] mx-auto my-10" *ngIf="!cargando">
+                <tr>
+                    <td class="font-bold py-2">Subtotal</td>
+                    <td class="py-2">$ {{subtotal | number:"1.2-2"}}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold py-2">Impuestos</td>
+                    <td class="py-2">$ {{impuestos | number:"1.2-2"}}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold py-2">Valor del envío</td>
+                    <td class="py-2">$ {{valorEnvio | number:"1.2-2"}}</td>
+                </tr>
+                <tr>
+                    <td class="font-bold py-2">Valor total</td>
+                    <td class="py-2">$ {{valorTotal | number:"1.2-2"}}</td>
+                </tr>
+            </table>
+
+            <div class="text-center my-5" *ngIf="cargando">
+                <app-cargando></app-cargando>
+            </div>
+
+            <div class="text-center my-10">
+                <button class="bg-gray-800 hover:bg-gray-600 px-6 py-2 text-white cursor-pointer
+                rounded-3xl text-lg" routerLink="/confirmacion">Realizar pago</button>
+            </div>
+
+        </div>
+
+        <div>
+
+        </div>
+    </div>
+
+    <div class="my-20" *ngIf="elementosCarrito.length==0">
+        <h3 class="text-2xl text-center">No tiene productos seleccionados</h3>
+    </div>
+</div>

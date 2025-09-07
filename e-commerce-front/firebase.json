@@ -1,0 +1,20 @@
+{
+  "hosting": {
+    "site": "e-commerce-sebastian",
+    "public": "dist/e-commerce-front/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

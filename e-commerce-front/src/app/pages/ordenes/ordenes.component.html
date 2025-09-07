@@ -1,0 +1,38 @@
+<div class="py-[5vh] px-5 lg:px-20">
+    <h2 class="text-center text-3xl my-[5vh] font-bold">Mis compras</h2>
+    
+    <div class="text-center my-12" *ngIf="cargando">
+        <app-cargando></app-cargando>
+    </div>
+
+    <div *ngIf="!cargando">
+
+        <div class="bg-white my-5 rounded-3xl p-5 lg:w-[50%] mx-auto" *ngFor="let orden of ordenes">
+            <div class="my-1">
+                <span class="bg-amber-300 rounded-3xl py-2 px-4 text-sm">{{orden.estado}}</span>
+            </div>
+            <div class="sm:grid sm:grid-cols-2">
+                <h3 class="my-1"><span class="font-bold">Número de orden: </span>{{orden.idOrden}}</h3>
+                <h3 class="my-1"><span class="font-bold">Fecha: </span>{{orden.fecha | date:"dd-MM-yyyy"}}</h3>
+            </div>
+            <h3 class="my-1"><span class="font-bold">Valor total: </span>{{orden.valorTotal | number:"1.2-2"}}</h3>
+            <ul>
+                <li *ngFor="let producto of orden.productos">
+                    <div class="grid grid-cols-2 bg-gray-100 my-1 rounded-2xl overflow-hidden px-1">
+                        <div class="my-1">
+                            {{producto.nombre}}<img class="w-20" [src]="producto.urlImagen" alt="">
+                        </div>
+                        <div class="my-1 flex items-center">
+                            <h3><span class="font-bold">Cantidad: </span>{{producto.cantidad}}</h3>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="my-20" *ngIf="ordenes.length==0 && !cargando">
+        <h3 class="text-2xl text-center">Aún no ha realizado órdenes</h3>
+    </div>
+</div>
